@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import InputField from './InputField'
+import applause from '../assets/sounds/applause-effect.mp3'
 
+// const applause = require('../assets/sounds/applause-effect.mp3')
 interface TimerProps {
   isOverlay: boolean
 }
@@ -23,6 +25,7 @@ export default function Timer({ isOverlay }: TimerProps): JSX.Element {
         } else {
           if (minutes === 0 && hours === 0) {
             //audio
+            applause.play()
 
             clearInterval(intervalId)
             setIsActive(false)
@@ -82,18 +85,30 @@ export default function Timer({ isOverlay }: TimerProps): JSX.Element {
           </div>
           <div
             id="timer-buttons"
-            className="flex justify-center gap-5 bg-black bg-opacity-10 rounded-xl"
+            className={
+              !isOverlay ? 'flex justify-center gap-5 bg-black bg-opacity-10 rounded-xl' : 'hidden'
+            }
           >
             {isActive ? (
               <>
                 <button
-                  className="start text-green-500 text-5xl"
+                  id="pause"
+                  className="start text-yellow-300 text-5xl"
                   onClick={() => setIsActive(false)}
                 >
                   &#x23F8;
                 </button>
-                <button className="text-yellow-300" onClick={() => setIsEditing(true)}>
-                  &#9998;
+                <button
+                  id="stop"
+                  className="text-red-500 text-3xl"
+                  onClick={() => {
+                    setIsActive(false)
+                    setHours(0)
+                    setMinutes(0)
+                    setSeconds(0)
+                  }}
+                >
+                  stop
                 </button>
               </>
             ) : (

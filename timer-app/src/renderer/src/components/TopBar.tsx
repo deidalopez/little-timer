@@ -18,7 +18,7 @@ export default function TopBar(): JSX.Element {
           <button id="minimize" className="p-1 text-lg" onClick={handleMin}>
             &#95;
           </button>
-          <button id="close" className="p-1 bg-slate-600 z-40" onClick={handleClose}>
+          <button id="close" className="p-1" onClick={handleClose}>
             &#x2715;
           </button>
         </div>
