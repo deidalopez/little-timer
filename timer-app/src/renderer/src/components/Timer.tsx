@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputField from './InputField'
 
 interface TimerProps {
@@ -12,6 +12,36 @@ export default function Timer({ isOverlay }: TimerProps): JSX.Element {
   const [seconds, setSeconds] = useState(0)
 
   const [isActive, setIsActive] = useState(false)
+
+  useEffect(() => {
+    let intervalId
+
+    if (isActive) {
+      intervalId = setInterval(() => {
+        if (seconds > 0) {
+          setSeconds((seconds) => seconds - 1)
+        } else {
+          if (minutes === 0 && hours === 0) {
+            //audio
+
+            clearInterval(intervalId)
+            setIsActive(false)
+          } else {
+            if (minutes === 0) {
+              setHours((hours) => hours - 1)
+              setMinutes(59)
+            } else {
+              setMinutes((minutes) => minutes - 1)
+            }
+            setSeconds(59)
+          }
+        }
+      }, 1000)
+    } else {
+      clearInterval(intervalId)
+    }
+    return () => clearInterval(intervalId)
+  }, [isActive, hours, minutes, seconds])
 
   return (
     <div>
