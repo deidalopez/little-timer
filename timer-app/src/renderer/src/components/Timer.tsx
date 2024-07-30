@@ -6,10 +6,12 @@ interface TimerProps {
 }
 
 export default function Timer({ isOverlay }: TimerProps): JSX.Element {
-  const [isEditing, setIsEditing] = useState(true)
+  const [isEditing, setIsEditing] = useState(false)
   const [hours, setHours] = useState(0)
   const [minutes, setMinutes] = useState(1)
   const [seconds, setSeconds] = useState(0)
+
+  const [isActive, setIsActive] = useState(false)
 
   return (
     <div>
@@ -42,7 +44,40 @@ export default function Timer({ isOverlay }: TimerProps): JSX.Element {
         </div>
       ) : (
         // Timer
-        <div></div>
+        <div>
+          <div className="flex justify-center">
+            <h1 className="text-green-500 text-4xl">
+              {`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}
+            </h1>
+          </div>
+          <div
+            id="timer-buttons"
+            className="flex justify-center gap-5 bg-black bg-opacity-10 rounded-xl"
+          >
+            {isActive ? (
+              <>
+                <button
+                  className="start text-green-500 text-5xl"
+                  onClick={() => setIsActive(false)}
+                >
+                  &#x23F8;
+                </button>
+                <button className="text-yellow-300" onClick={() => setIsEditing(true)}>
+                  &#9998;
+                </button>
+              </>
+            ) : (
+              <>
+                <button className="start text-green-500 text-5xl" onClick={() => setIsActive(true)}>
+                  &#9658;
+                </button>
+                <button className="text-yellow-300 text-5xl" onClick={() => setIsEditing(true)}>
+                  &#9998;
+                </button>
+              </>
+            )}
+          </div>
+        </div>
       )}
     </div>
   )
