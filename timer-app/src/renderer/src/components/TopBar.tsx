@@ -11,14 +11,14 @@ export default function TopBar(): JSX.Element {
   return (
     <div>
       <div
-        className="bg-blue-400 w-screen h-6"
+        className="bg-blue-400 w-screen h-8"
         style={{ WebkitAppRegion: 'drag' } as React.CSSProperties}
       >
         <div id="control-buttons" className="absolute top-0 right-0 text-stone-200 pe-2">
           <button id="minimize" className="p-1 text-lg" onClick={handleMin}>
-            &#95;
+            _
           </button>
-          <button id="close" className="p-1" onClick={handleClose}>
+          <button id="close" className="p-1 text-lg" onClick={handleClose}>
             &#x2715;
           </button>
         </div>
