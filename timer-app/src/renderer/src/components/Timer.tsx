@@ -12,6 +12,7 @@ export default function Timer({ isOverlay }: TimerProps): JSX.Element {
   const [hours, setHours] = useState(0)
   const [minutes, setMinutes] = useState(1)
   const [seconds, setSeconds] = useState(0)
+  const [alarmTitle, setAlarmTitle] = useState('')
 
   const [isActive, setIsActive] = useState(false)
 
@@ -53,6 +54,11 @@ export default function Timer({ isOverlay }: TimerProps): JSX.Element {
         <div className="flex justify-center">
           <div>
             <InputField
+              label="Title"
+              value={alarmTitle}
+              onChange={(e) => setAlarmTitle(e.target.value)}
+            />
+            <InputField
               label="Hours"
               value={hours}
               onChange={(e) => setHours(parseInt(e.target.value))}
@@ -77,7 +83,8 @@ export default function Timer({ isOverlay }: TimerProps): JSX.Element {
         </div>
       ) : (
         // Timer
-        <div>
+        <div className="flex-wrap justify-center">
+          <h1 className="text-green-500 text-2xl">{alarmTitle}</h1>
           <div className="flex justify-center">
             <h1 className="text-green-500 text-4xl">
               {`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}

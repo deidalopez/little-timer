@@ -2,7 +2,7 @@ import React from 'react'
 
 interface InputFieldProps {
   label: string
-  value: number
+  value: number | string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
 }
@@ -22,14 +22,29 @@ export default function InputField({
   }
   return (
     <div className="text-2xl">
-      <label className="text-stone-200">{label}:</label>
-      <input
-        type="number"
-        value={value}
-        onChange={handleInputChange}
-        placeholder={placeholder}
-        className="w-20 bg-transparent text-blue-500"
-      ></input>
+      {label === 'Title' ? (
+        <>
+          <label className="text-stone-200">{label}:</label>
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => onChange(e)}
+            placeholder={placeholder}
+            className="w-20 bg-transparent text-blue-500"
+          ></input>
+        </>
+      ) : (
+        <>
+          <label className="text-stone-200">{label}:</label>
+          <input
+            type="number"
+            value={value}
+            onChange={handleInputChange}
+            placeholder={placeholder}
+            className="w-20 bg-transparent text-blue-500"
+          ></input>
+        </>
+      )}
     </div>
   )
 }

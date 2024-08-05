@@ -7,7 +7,7 @@ function App(): JSX.Element {
 
   useEffect(() => {
     window.electron.ipcRenderer.on('overlay-mode', () => setIsOverlay((prevState) => !prevState))
-    return window.electron.ipcRenderer.removeAllListeners('overlay-mode')
+    return () => window.electron.ipcRenderer.removeAllListeners('overlay-mode')
   }, [])
 
   return (
