@@ -11,7 +11,7 @@ export default function TopBar(): JSX.Element {
   return (
     <div>
       <div
-        className="bg-blue-400 w-screen h-8"
+        className="bg-violet-400 w-screen h-8"
         style={{ WebkitAppRegion: 'drag' } as React.CSSProperties}
       >
         <div id="control-buttons" className="absolute top-0 right-0 text-stone-200 pe-2">

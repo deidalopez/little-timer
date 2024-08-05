@@ -83,9 +83,9 @@ export default function Timer({ isOverlay }: TimerProps): JSX.Element {
         </div>
       ) : (
         // Timer
-        <div className="flex-wrap justify-center">
-          <h1 className="text-green-500 text-2xl">{alarmTitle}</h1>
-          <div className="flex justify-center">
+        <div>
+          <div className="flex flex-col items-center">
+            <h1 className="text-green-500 text-2xl">{alarmTitle}</h1>
             <h1 className="text-green-500 text-4xl">
               {`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`}
             </h1>
@@ -107,7 +107,7 @@ export default function Timer({ isOverlay }: TimerProps): JSX.Element {
                 </button>
                 <button
                   id="stop"
-                  className="text-red-500 text-3xl"
+                  className="text-red-500 text-5xl"
                   onClick={() => {
                     setIsActive(false)
                     setHours(0)
@@ -115,7 +115,7 @@ export default function Timer({ isOverlay }: TimerProps): JSX.Element {
                     setSeconds(0)
                   }}
                 >
-                  stop
+                  &#x23F9;
                 </button>
               </>
             ) : (

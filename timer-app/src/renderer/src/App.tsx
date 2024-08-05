@@ -13,7 +13,7 @@ function App(): JSX.Element {
   return (
     <>
       <div className={isOverlay ? 'invisible' : 'visible'}>
-        <TopBar></TopBar>
+        <TopBar />
       </div>
       <div className="bg-black bg-opacity-40 rounded-xl pt-3">
         <Timer isOverlay={isOverlay} />
